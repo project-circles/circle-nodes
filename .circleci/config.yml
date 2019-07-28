@@ -13,7 +13,11 @@ jobs:
           command: cargo test --all --release
       - run: 
           name: Lint
-          command: cargo clippy
+          command: |
+            cargo component add clippy
+            cargo clippy
       - run: 
           name: Formatted
-          command: cargo fmt --check
+          command: |
+            cargo component add rustfmt
+            cargo fmt --check
