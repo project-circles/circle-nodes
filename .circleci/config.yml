@@ -20,4 +20,4 @@ jobs:
           name: Formatted
           command: |
             rustup component add rustfmt
-            cargo fmt --check
+            cargo fmt -- --check
