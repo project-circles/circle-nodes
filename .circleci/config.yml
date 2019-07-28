@@ -1,0 +1,30 @@
+version: 2
+jobs:
+
+  rust-build:
+    docker:
+      -image: rust:1
+    steps:
+      -checkout
+      -run: cargo build --all --release
+
+  rust-test:
+    docker:
+      -image: rust:1
+    steps:
+      -checkout
+      -run: cargo test --all --release
+
+  rust-clippy:
+    docker:
+      -image: rust:1
+    steps:
+      -checkout
+      -run: cargo clippy
+
+  rust-fmt:
+    docker:
+      -image: rust:1
+    steps:
+      -checkout
+      -run: cargo fmt --check
