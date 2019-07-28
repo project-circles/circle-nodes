@@ -14,10 +14,10 @@ jobs:
       - run: 
           name: Lint
           command: |
-            cargo component add clippy
+            rustup component add clippy
             cargo clippy
       - run: 
           name: Formatted
           command: |
-            cargo component add rustfmt
+            rustup component add rustfmt
             cargo fmt --check
