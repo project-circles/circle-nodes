@@ -1,30 +1,23 @@
 version: 2
 jobs:
-
-  rust-build:
+  build:
     docker:
-      -image: rust:1
+      - image: rust:1
     steps:
-      -checkout
-      -run: cargo build --all --release
-
-  rust-test:
-    docker:
-      -image: rust:1
-    steps:
-      -checkout
-      -run: cargo test --all --release
-
-  rust-clippy:
-    docker:
-      -image: rust:1
-    steps:
-      -checkout
-      -run: cargo clippy
-
-  rust-fmt:
-    docker:
-      -image: rust:1
-    steps:
-      -checkout
-      -run: cargo fmt --check
+      - checkout
+      - run: 
+          name: Build
+          command: cargo build --all --release
+      - run: 
+          name: Test
+          command: cargo test --all --release
+      - run: 
+          name: Lint
+          command: |
+            rustup component add clippy
+            cargo clippy
+      - run: 
+          name: Formatted
+          command: |
+            rustup component add rustfmt
+            cargo fmt -- --check
